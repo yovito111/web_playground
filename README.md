@@ -1,0 +1,1 @@
+Es un proyecto dónde pongo a prueba mis habilidades cómo desarrolador backend con el framework django
