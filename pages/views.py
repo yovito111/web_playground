@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView ,UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import  reverse_lazy
+from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Page
@@ -12,10 +13,11 @@ from .forms import PageForm
 class PagesListView(ListView):
     model = Page
 
+@method_decorator(login_required, name='dispatch')
 class PageDetailView(DetailView):
     model = Page
 
-@method_decorator(staff_member_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class PageCreateView(CreateView):
     model = Page
     form_class = PageForm
