@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django import forms
 #local
 from .models import Profile
-from .forms import UserCreationFormWithEmail
+from .forms import UserCreationFormWithEmail, ProfileForm
 
 class SignUpView(CreateView):
     form_class = UserCreationFormWithEmail
@@ -33,8 +33,7 @@ class SignUpView(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class ProfileView(UpdateView):
-    model = Profile
-    fields = ['avatar', 'bio', 'link']
+    form_class = ProfileForm
     success_url = reverse_lazy('profile')
     template_name = 'registration/profile_form.html'
     
