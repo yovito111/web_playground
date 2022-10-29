@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #Localapps
     'ckeditor',
     'core',
+    'messenger',
     'pages.apps.PagesConfig',
     'profiles',
 ]
