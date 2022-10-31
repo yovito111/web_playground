@@ -1,3 +1,4 @@
+from turtle import update
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import m2m_changed
@@ -28,8 +29,12 @@ class ThreadManager(models.Manager):
 class Thread(models.Model):
     users = models.ManyToManyField(User, related_name='threads')
     messages = models.ManyToManyField(Message)
-
+    updated = models.DateTimeField(auto_now=True)
+    
     objects = ThreadManager()
+
+    class Meta:
+        ordering = ['-updated']
 
 def messages_changed(sender, **kwargs):
     instance = kwargs.pop("instance", None)
